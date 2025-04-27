@@ -1,4 +1,4 @@
-<h1>Try deploying main.go with the API</h1>
+<h1>Deploy main.go with the API</h1>
   curl -ivX POST --data-binary @main.go -H 'API-KEY: '"{MY-API-KEY}"'' "https://rawdat.ai/api/v1/deploy-function?uri=/*&language=go&protocol=https&hostname=third.run.place" &
 
   - The payload is the source code (@main.go)
