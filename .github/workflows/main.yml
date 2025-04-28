@@ -23,7 +23,7 @@ jobs:
 
     - name: Process changes
       env:
-        API_TOKEN: ${{ secrets.API_TOKEN }}
+        API_KEY: ${{ secrets.API_KEY }}
       run: |
         echo '${{ steps.changed-files.outputs.files }}' | jq -r '.[]' | while read -r file; do
           # Get before content (base64 encoded)
@@ -32,19 +32,7 @@ jobs:
           else
             BEFORE="null"
           fi
-
-          # Get after content
-          AFTER=$(base64 -w0 "after-repo/$file")
-
-          curl -X POST "https://api.example.com/diff" \
-          -H "Authorization: Bearer $API_TOKEN" \
-          -H "Content-Type: application/json" \
-          -d '{
-            "filename": "'"$file"'",
-            "before": "'"$BEFORE"'",
-            "after": "'"$AFTER"'",
-            "encoding": "base64",
-            "commit": "'"${{ github.sha }}"'"
-          }'
+          curl -X POST "https://rawdat.ai/api/v1/functions/uuid" \
+          -H "API_KEY: $API_KEY" --data-binary $BEFORE
         done
 
