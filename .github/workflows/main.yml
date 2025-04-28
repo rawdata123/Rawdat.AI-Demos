@@ -20,18 +20,18 @@ jobs:
       id: changed-files
       run: |
         echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
-        
-    - name: Retrieve uuids from changed functions
-      env:
+	
+    - name: Retrieve uuids from changed function
+      env: 
         API_KEY: ${{ secrets.API_KEY }}
       run: |
         echo '${{ steps.changed-files.outputs.files }}' | jq -r '.[]' | while read -r file; do
-	  #Get before content (base64 encoded)
-          if [ -f "before-repo/$file" ]; then
-	    BEFORE=$(base64 -w0 "before-repo/$file")
+	  # Get BEFORE content (base64 encoded)
+          if [ -f "before/$file" ]; then
+            BEFORE=$(base64 -w0 "before/$file")
           else
             BEFORE="null"
-	  fi
+          fi
 	  #POST before content to the API
 	  curl -s -X POST --data-binary $BEFORE -H 'API-KEY: $API_KEY' "https://rawdat.ai/api/v1/functions/uuid"         
         done
