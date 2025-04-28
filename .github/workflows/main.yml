@@ -10,6 +10,7 @@ jobs:
       with:
         ref: ${{ github.event.before }}
         path: before-repo
+        fetch-depth: 0
 
     - name: Checkout current state
       uses: actions/checkout@v4
