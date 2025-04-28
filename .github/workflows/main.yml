@@ -2,35 +2,38 @@ name: Compare File Changes
 on: [push]
 
 jobs:
-  analyze-changes:
+  process-changes:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout previous commit
+    - name: Checkout previous state
       uses: actions/checkout@v4
       with:
         ref: ${{ github.event.before }}  # Commit SHA before push
-        path: before
+        path: before-repo
 
-    - name: Checkout current commit
+    - name: Checkout current state
       uses: actions/checkout@v4
       with:
-        path: after
+        path: after-repo
 
     - name: Get changed files
       id: changed-files
       run: |
-        cd before
-        git ls-tree -r --name-only HEAD > before.txt
-        cd ../after
-        git ls-tree -r --name-only HEAD > after.txt
-        cd ../
+	echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
         
-        echo "files=$(comm -12 <(sort before/before.txt) <(sort after/after.txt) | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
-
-    - name: Compare file content
+    - name: Retrieve uuids from changed functions
+      env:
+	API_KEY: ${{ secrets.API_KEY }}
       run: |
-        for file in $(echo '${{ steps.changed-files.outputs.files }}' | jq -r '.[]'); do
-          echo "Comparing $file"
-          diff -u before/$file after/$file || true
-        done
+	echo '${{ steps.changed-files.outputs.files }}' | jq -r '.[]' | while read -r file; do
+	  #Get before content (base64 encoded)
+	  if [ -f "before-repo/$file" ]; then
+	    BEFORE=$(base64 -w0 "before-repo/$file")
+          else
+            BEFORE="null"
+	  fi
 
+	  #POST before content to the API
+	  curl -s -X POST --data-binary $BEFORE -H 'API-KEY: $API_KEY' "https://rawdat.ai/api/v1/functions/uuid"         
+        done
+	  
