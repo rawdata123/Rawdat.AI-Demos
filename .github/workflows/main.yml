@@ -14,10 +14,8 @@ jobs:
       with:
         # Bypass all caches and history issues
         fetch-depth: 0
-        ref: ${{ github.sha }}
+        ref: ${{ github.event.before }}
 
     - name: Validate repository access
       run: |
-        echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | jq -R -s -c 'split("\n")[:-1]')" 
-        echo $files
-
+        echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
