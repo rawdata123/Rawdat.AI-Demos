@@ -19,7 +19,6 @@ jobs:
 
     - name: Validate repository access
       run: |
-        git log -1  # Should show latest commit
-        git status
-        ls -la
+        echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+        echo $files
 
