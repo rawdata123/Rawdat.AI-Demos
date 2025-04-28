@@ -8,7 +8,7 @@ jobs:
     - name: Checkout previous state
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.before }}
+        ref: ${{ github.sha }}
         path: before-repo
         fetch-depth: 0
 
