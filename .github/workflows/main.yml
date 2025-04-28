@@ -1,6 +1,5 @@
 name: Emergency Access Workflow
-on: 
-  workflow_dispatch:  # Enable manual triggering
+on: [push] 
 
 permissions:
   contents: read
