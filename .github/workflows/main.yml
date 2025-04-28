@@ -8,7 +8,7 @@ jobs:
     - name: Checkout previous state
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.sha }}
+        ref: ${{ github.event.before }}
         path: before-repo
         fetch-depth: 0
 
@@ -17,8 +17,8 @@ jobs:
       with:
         path: after-repo
 
-    - name: Get changed files
-      id: changed-files
+    - name: Debug commit
       run: |
-        echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
-        echo $files
+        git fetch --depth=1 origin ${{ github.sha }}
+        git show ${{ github.sha }}  # Replace with your SHA if hardcoded
+
