@@ -31,5 +31,5 @@ jobs:
           else
             BEFORE="null"
           fi
-          curl -s -X POST --data-binary $BEFORE -H 'API-KEY: $API_KEY' "https://rawdat.ai/api/v1/functions/uuid" 
+          curl -s -X POST --data-binary $BEFORE -H 'API-KEY: '"$API_KEY"'' "https://rawdat.ai/api/v1/functions/uuid" 
         done
