@@ -19,6 +19,6 @@ jobs:
     - name: Get changed files
       id: changed-files
       run: |
-        cd after_repo
+        cd after-repo
         echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }}"
         echo $files
