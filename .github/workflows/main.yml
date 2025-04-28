@@ -23,8 +23,9 @@ jobs:
         git ls-tree -r --name-only HEAD > before.txt
         cd ../after
         git ls-tree -r --name-only HEAD > after.txt
+        cd ../
         
-        echo "files=$(comm -12 <(sort before.txt) <(sort after.txt) | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+        echo "files=$(comm -12 <(sort before/before.txt) <(sort after/after.txt) | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
 
     - name: Compare file content
       run: |
