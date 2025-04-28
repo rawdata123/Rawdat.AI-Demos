@@ -25,8 +25,7 @@ jobs:
       env:
         API_TOKEN: ${{ secrets.API_TOKEN }}
       run: |
-        echo '${{ steps.changed-files.outputs.files }}' | jq -r '.[]' | while read -r 
-file; do
+        echo '${{ steps.changed-files.outputs.files }}' | jq -r '.[]' | while read -r file; do
           # Get before content (base64 encoded)
           if [ -f "before-repo/$file" ]; then
             BEFORE=$(base64 -w0 "before-repo/$file")
