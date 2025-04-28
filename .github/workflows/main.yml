@@ -3,7 +3,6 @@ on: [push]
 
 permissions:
   contents: read
-  actions: read
 
 jobs:
   nuclear-option:
