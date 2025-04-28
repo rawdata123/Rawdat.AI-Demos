@@ -1,4 +1,4 @@
-name: Compare File Changes
+name: Process File Changes
 on: [push]
 
 jobs:
@@ -8,7 +8,7 @@ jobs:
     - name: Checkout previous state
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.before }}  # Commit SHA before push
+        ref: ${{ github.event.before }}
         path: before-repo
 
     - name: Checkout current state
@@ -16,4 +16,36 @@ jobs:
       with:
         path: after-repo
 
-	  
+    - name: Get changed files
+      id: changed-files
+      run: |
+        echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+
+    - name: Process changes
+      env:
+        API_TOKEN: ${{ secrets.API_TOKEN }}
+      run: |
+        echo '${{ steps.changed-files.outputs.files }}' | jq -r '.[]' | while read -r 
+file; do
+          # Get before content (base64 encoded)
+          if [ -f "before-repo/$file" ]; then
+            BEFORE=$(base64 -w0 "before-repo/$file")
+          else
+            BEFORE="null"
+          fi
+
+          # Get after content
+          AFTER=$(base64 -w0 "after-repo/$file")
+
+          curl -X POST "https://api.example.com/diff" \
+          -H "Authorization: Bearer $API_TOKEN" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "filename": "'"$file"'",
+            "before": "'"$BEFORE"'",
+            "after": "'"$AFTER"'",
+            "encoding": "base64",
+            "commit": "'"${{ github.sha }}"'"
+          }'
+        done
+
