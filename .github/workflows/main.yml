@@ -1,24 +1,26 @@
-name: Process File Changes
-on: [push]
+name: Emergency Access Workflow
+on: 
+  workflow_dispatch:  # Enable manual triggering
+
+permissions:
+  contents: read
+  actions: read
+  checks: write
 
 jobs:
-  process-changes:
+  nuclear-option:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout previous state
+    - name: Checkout with full permissions
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.before }}
-        path: before-repo
+        # Bypass all caches and history issues
         fetch-depth: 0
+        ref: ${{ github.sha }}
 
-    - name: Checkout current state
-      uses: actions/checkout@v4
-      with:
-        path: after-repo
-
-    - name: Debug commit
+    - name: Validate repository access
       run: |
-        git fetch --depth=1 origin ${{ github.sha }}
-        git show ${{ github.sha }}  # Replace with your SHA if hardcoded
+        git log -1  # Should show latest commit
+        git status
+        ls -la
 
