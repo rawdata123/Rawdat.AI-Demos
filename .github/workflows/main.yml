@@ -13,10 +13,9 @@ jobs:
     - name: Checkout with read permissions
       uses: actions/checkout@v4
       with:
-        # Bypass all caches and history issues
-        fetch-depth: 0
         ref: ${{ github.event.before }}
-        path: before-repo
+        path: before
+
 
     - name: Get changed files
       id: changed-files 
@@ -28,5 +27,5 @@ jobs:
         API_KEY: ${{ secrets.API_KEY }}
       run: |
         echo '${{ steps.changed-files.outputs.files }}' | jq -r '.[]' | while read -r file; do
-          curl -s -X POST --data-binary @"before-repo/$file" -H 'API-KEY: '"$API_KEY"'' https://rawdat.ai/api/v1/functions/uuid
+          curl -s -X POST --data-binary @"before/$file" -H 'API-KEY: '"$API_KEY"'' https://rawdat.ai/api/v1/functions/uuid
         done
