@@ -24,5 +24,5 @@ jobs:
         API_KEY: ${{ secrets.API_KEY }}
       run: |
         echo '${{ steps.changed-files.outputs.files }}' | jq -r '.[]' | while read -r file; do
-          curl -s -X POST --data-binary @"before/$file" -H 'API-KEY: '"$API_KEY"'' https://rawdat.ai/api/v1/functions/uuid
+          curl -s -X POST --data-binary @"$file" -H 'API-KEY: '"$API_KEY"'' https://rawdat.ai/api/v1/functions/uuid
         done
