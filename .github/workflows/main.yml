@@ -26,7 +26,7 @@ jobs:
       run: |
         echo '${{ steps.changed-files.outputs.files }}' | jq -r '.[]' | while read -r file; do
           if [ -f "before/$file" ]; then
-            BEFORE=$(base64 -w0 "before/$file")
+            BEFORE=$(cat "before/$file")
           else
             BEFORE="null"
           fi
