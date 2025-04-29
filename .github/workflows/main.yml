@@ -14,7 +14,6 @@ jobs:
         # Bypass all caches and history issues
         fetch-depth: 0
         ref: ${{ github.event.before }}
-        path: before-repo
 
     - name: Get changed files
       id: changed-files 
