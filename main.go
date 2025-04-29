@@ -41,7 +41,7 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Workshop Scheduler V2</title>
+    <title>Workshop Scheduler</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -84,7 +84,7 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
     </style>
 </head>
 <body>
-    <h1>Workshop Scheduler V2</h1>
+    <h1>Workshop Scheduler</h1>
     <p>Upload your CSV files and configure scheduling options below.</p>
     
     <form action="/upload" method="post" enctype="multipart/form-data">
