@@ -18,6 +18,9 @@ jobs:
       id: changed-files 
       run: |
         echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+    
+    - name: Checkout current commit (after push)
+      uses: actions/checkout@v4
 
     - name: Process change
       env:
