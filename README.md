@@ -1,5 +1,5 @@
 <h1>Deploying the application with the API</h1>
-  First create the application. For example, deploy the John Travolta application (John_Travolta.go).
+  First create the application. For example, deploy the John Travolta application (John_Travolta.go).\
   
  
   ``curl -ivX POST --data-binary @main.go -H 'API-KEY: '"{MY-API-KEY}"'' "https://rawdat.ai/api/v1/deploy-function?uri=/*&language=go&protocol=https&hostname=third.run.place"``
@@ -17,7 +17,7 @@ Connect to the application (https://juicebox.publicvm.com)
 
 
 <h1>Pushing changes to your created applications</h1>
-  To push new changes to your applications in real time, commit your changes and push to the repository.
+  To push new changes to your applications in real time, commit your changes and push to the repository.\
 
 
   ``git add John_Travolta.go ``
