@@ -16,20 +16,14 @@ type TravoltaQuote struct {
 }
 
 var quotes = []TravoltaQuote{
-	{"Pulp Fiction", "You know what they call a Quarter Pounder with Cheese in 
-Paris?", ""},
-	{"Pulp Fiction", "I got my technique down and everything, I don't be 
-tickling or nothin'.", "cool"},
+	{"Pulp Fiction", "You know what they call a Quarter Pounder with Cheese in Paris?", ""},
+	{"Pulp Fiction", "I got my technique down and everything, I don't be tickling or nothin'.", "cool"},
 	{"Grease", "Tell me about it, stud.", "leather jacket"},
-	{"Saturday Night Fever", "You paint your hair. I work on my hair a long 
-time and you hit it.", "disco"},
+	{"Saturday Night Fever", "You paint your hair. I work on my hair a long time and you hit it.", "disco"},
 	{"Face/Off", "I want to take his face... off.", "unhinged"},
-	{"Look Who's Talking", "You're the only one who knows what it's like to be 
-me.", ""},
-	{"Hairspray", "Our world is changing, boys and girls!", "drag queen 
-energy"},
-	{"Battlefield Earth", "While you were still learning how to SPELL YOUR 
-NAME, I was conquering galaxies!", "so bad it’s good"},
+	{"Look Who's Talking", "You're the only one who knows what it's like to be me.", ""},
+	{"Hairspray", "Our world is changing, boys and girls!", "drag queen energy"},
+	{"Battlefield Earth", "While you were still learning how to SPELL YOUR NAME, I was conquering galaxies!", "so bad it’s good"},
 }
 
 func getRandomQuote() TravoltaQuote {
@@ -44,7 +38,7 @@ func uiHandler(w http.ResponseWriter, r *http.Request) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Travolta Quote Machine V2</title>
+  <title>Travolta Quote Machine</title>
   <style>
     body {
   font-family: 'Comic Sans MS', cursive;
@@ -177,8 +171,7 @@ func uiHandler(w http.ResponseWriter, r *http.Request) {
   </style>
 </head>
 <body>
-  <img src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif" alt="Disco 
-Ball" id="discoBall" />
+  <img src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif" alt="Disco Ball" id="discoBall" />
   
   <div class="floor" id="danceFloor"></div>
 
@@ -189,14 +182,12 @@ Ball" id="discoBall" />
     <button onclick="toggleDance()">💃 DANCE MODE</button>
     <div id="quoteBox">Click the button to get a Travolta classic!</div>
     <div id="gifBox">
-  <img id="travoltaGif" src="" alt="Travolta GIF" style="max-width: 400px; 
-margin-top: 20px; display: none;">
+  <img id="travoltaGif" src="" alt="Travolta GIF" style="max-width: 400px; margin-top: 20px; display: none;">
 </div>
   </div>
 
   <audio id="discoAudio" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" 
-type="audio/mpeg">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
@@ -209,24 +200,16 @@ type="audio/mpeg">
   const res = await fetch('/quote');
   const data = await res.json();
   document.getElementById('quoteBox').innerHTML =
-    '<p><strong>"' + data.quote + '"</strong></p><p>– <em>' + data.movie + 
-'</em></p>';
+    '<p><strong>"' + data.quote + '"</strong></p><p>– <em>' + data.movie + '</em></p>';
 
   const gifs = [
-    "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif",   // classic 
-confused Travolta
-    "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",     // Travolta 
-dancing
-    "https://media.giphy.com/media/10cU0MYvS6YkU4/giphy.gif",        // white suit 
-dance
-    "https://media.giphy.com/media/3oEduN5sfUqV0jDFyQ/giphy.gif",    // face off 
-moment
-    "https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif",    // Grease 
-dance
-    "https://media.giphy.com/media/l0ExncehJzexFpRHq/giphy.gif",     // dramatic 
-pose
-    "https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif"     // finger 
-pointing disco king
+    "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif",   // classic confused Travolta
+    "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",     // Travolta dancing
+    "https://media.giphy.com/media/10cU0MYvS6YkU4/giphy.gif",        // white suit dance
+    "https://media.giphy.com/media/3oEduN5sfUqV0jDFyQ/giphy.gif",    // face off moment
+    "https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif",    // Grease dance
+    "https://media.giphy.com/media/l0ExncehJzexFpRHq/giphy.gif",     // dramatic pose
+    "https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif"     // finger pointing disco king
   ];
 
   const gif = gifs[Math.floor(Math.random() * gifs.length)];
