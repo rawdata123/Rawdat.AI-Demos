@@ -44,7 +44,7 @@ func uiHandler(w http.ResponseWriter, r *http.Request) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Travolta Quote Machine</title>
+  <title>Travolta Quote Machine V2</title>
   <style>
     body {
   font-family: 'Comic Sans MS', cursive;
