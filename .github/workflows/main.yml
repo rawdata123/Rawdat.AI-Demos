@@ -33,5 +33,5 @@ jobs:
         API_KEY: ${{ secrets.API_KEY }}
       run: |
         echo '${{ steps.changed-files.outputs.list }}' | jq -r 'to_entries[] | "\(.key)=\(.value)"' | while IFS='=' read -r key value; do
-          echo "Key: $key, Value: $value"
+          curl -s -X PATCH --data-binary @$value -H 'API-KEY: '"$API_KEY"'' https://rawdat.ai/api/v1/edit-function/$key
         done 
