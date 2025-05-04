@@ -16,10 +16,12 @@ Connect to the application (https://juicebox.publicvm.com)
 
 
 <h1>Pushing changes to your created applications</h1>
-  To push new changes to your applications in real time, commit your changes and push to the repository
+  To push new changes to your applications in real time, commit your changes and push to the repository.
 
-  ``git add John_Travolta.go``
-  ``git commit -m "New update to John_Travolta app"``
+  ``git add John_Travolta.go \n``
+
+  ``git commit -m "New update to John_Travolta app" \n``
+
   ``git push``
 
   Connect to the application and review the change (https://juicebox.publicvm.com)
