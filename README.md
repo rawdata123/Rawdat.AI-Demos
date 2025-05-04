@@ -1,11 +1,12 @@
-<h1>Deploy main.go with the API</h1>
-  First we create application. For example, deploy the John Travolta application with the Rawdat.AI API.
+<h1>Deploying the application with the API</h1>
+  First create the application. For example, deploy the John Travolta application (John_Travolta.go)
+
  
  ``curl -ivX POST --data-binary @main.go -H 'API-KEY: '"{MY-API-KEY}"'' "https://rawdat.ai/api/v1/deploy-function?uri=/*&language=go&protocol=https&hostname=third.run.place"``
 
-  - The payload is the source code (@main.go)
-  - Set the HTTP API-KEY header to your assigned secret key
-  - Query parameter uri is a wildcard /*
+  - The payload is the source file of the application we are deploying (John_Travolta.go)
+  - Set the HTTP API-KEY header to your assigned secret key for user authentication (Reach out to support@rawdat.ai for an API-Key)
+  - Query parameter uri is a wildcard = /*
   - Query parameter protocol = https
   - Query parameter hostname = juicebox.publicvm.com;
 
@@ -13,3 +14,12 @@
 
 Connect to the application (https://juicebox.publicvm.com)
 
+
+<h1>Pushing changes to your created applications</h1>
+  To push new changes to your applications in real time, commit your changes and push to the repository
+
+  ``git add John_Travolta.go``
+  ``git commit -m "New update to John_Travolta app"``
+  ``git push``
+
+  Connect to the application and review the change (https://juicebox.publicvm.com)
