@@ -6,6 +6,7 @@
 
   - The payload is the source file of the application we are deploying (John_Travolta.go)
   - Set the HTTP API-KEY header to your assigned secret key for user authentication (Reach out to support@rawdat.ai for an API-Key)
+  - Query parameter language is Go since the app is written in go
   - Query parameter uri is a wildcard = /*
   - Query parameter protocol = https
   - Query parameter hostname = juicebox.publicvm.com;
@@ -18,9 +19,10 @@ Connect to the application (https://juicebox.publicvm.com)
 <h1>Pushing changes to your created applications</h1>
   To push new changes to your applications in real time, commit your changes and push to the repository.
 
-  ``git add John_Travolta.go \n``
 
-  ``git commit -m "New update to John_Travolta app" \n``
+  ``git add John_Travolta.go ``
+
+  ``git commit -m "New update to John_Travolta app" ``
 
   ``git push``
 
