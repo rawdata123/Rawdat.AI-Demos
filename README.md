@@ -9,10 +9,10 @@
 
   - The payload is the source file of the application we are deploying (John_Travolta.go)
   - Set the HTTP API-KEY header to your assigned secret key for user authentication (Reach out to support@rawdat.ai for an API-Key)
-  - Query parameter language is Go since the app is written in go
-  - Query parameter uri is a wildcard = /*
-  - Query parameter protocol = https
-  - Query parameter hostname = juicebox.publicvm.com;
+  - Query parameter <strong>language</strong> is Go since the app is written in go
+  - Query parameter <strong>uri</strong> is a wildcard = /*
+  - Query parameter <strong>protocol</strong> = https
+  - Query parameter <strong>hostname</strong> = juicebox.publicvm.com;
 
 Connect to the application (https://juicebox.publicvm.com)
 
