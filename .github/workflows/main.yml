@@ -24,7 +24,7 @@ jobs:
         for file in $(echo "$files" | jq -r '.[]'); do
           json=$(echo "$json" | jq --arg k "$(curl -s -X POST --data-binary @$file -H 'API-KEY '"$API_KEY"'' https://rawdat.ai/api/v1/functions/uuid)" --arg v "$file" '. + {($k): $v}')
         done
-        echo "list=$json" >> $GITHUB_OUTPUT
+        echo list=$json >> $GITHUB_OUTPUT
     - name: Checkout current commit (after push)
       uses: actions/checkout@v4
 
