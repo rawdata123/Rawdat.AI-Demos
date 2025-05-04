@@ -2,7 +2,7 @@
   <p>First create the application. For example, deploy the John Travolta application (John_Travolta.go).<br></p>  
   
 
-  ``curl -ivX POST --data-binary @main.go -H 'API-KEY: '"{MY-API-KEY}"'' "https://rawdat.ai/api/v1/deploy-function?uri=/*&language=go&protocol=https&hostname=third.run.place"``
+  ``curl -ivX POST --data-binary @John_Travolta.go -H 'API-KEY: '"{MY-API-KEY}"'' "https://rawdat.ai/api/v1/deploy-function?uri=/*&language=go&protocol=https&hostname=third.run.place"``
 
    
   ``Function is succesfully deployed. Entry point is 11.11.XX.XX.``
