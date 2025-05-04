@@ -41,7 +41,7 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Workshop Scheduler v2</title>
+    <title>Workshop Scheduler</title>
     <style>
         body {
             font-family: Arial, sans-serif;
