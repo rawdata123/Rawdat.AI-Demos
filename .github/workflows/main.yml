@@ -21,9 +21,9 @@ jobs:
       run: |
         #echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
         #new_array=()
-        #echo '["main.go","hell.go"]' | jq -r '.[]' | while read -r file; do
-        curl -s -X POST --data-binary @main.go -H 'API-KEY '"$API_KEY"'' https://rawdat.ai/api/v1/functions/uuid
-        #done
+        echo '["main.go","John_Travolta.go"]' | jq -r '.[]' | while read -r file; do
+          curl -s -X POST --data-binary @$file -H 'API-KEY '"$API_KEY"'' https://rawdat.ai/api/v1/functions/uuid
+        done
         #echo "$new_array"
 #    - name: Checkout current commit (after push)
 #      uses: actions/checkout@v4
