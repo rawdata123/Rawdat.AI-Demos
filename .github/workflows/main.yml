@@ -22,7 +22,7 @@ jobs:
         echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
         #new_array=()
         echo '${{ steps.changed-files.outputs.files }}' | jq -r '.[]' | while read -r file; do
-          curl -s X POST --data-binary @$file -H 'API-KEY '"$API_KEY"'' https://rawdat.ai/api/v1/functions/uuid)
+          curl -s X POST --data-binary @$file -H 'API-KEY '"$API_KEY"'' https://rawdat.ai/api/v1/functions/uuid
         done
         echo "$new_array"
 #    - name: Checkout current commit (after push)
