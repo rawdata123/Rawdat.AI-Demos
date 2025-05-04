@@ -19,9 +19,9 @@ jobs:
         API_KEY: ${{ secrets.API_KEY }}
       id: changed-files 
       run: |
-        echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+        files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | jq -R -s -c 'split("\n")[:-1]')"
         #new_array=()
-        for file in {$files[@]}; do
+        for file in $files; do
           echo $file
           #curl -s -X POST --data-binary @$file -H 'API-KEY '"$API_KEY"'' https://rawdat.ai/api/v1/functions/uuid
         done
