@@ -1,4 +1,4 @@
-<h1>Composing applications in the skynet with Rawdat.AI</h1>
+<h1>Composing applications in the sky with Rawdat.AI</h1>
   <p>First create the application. You can chose any source file from the repositiory. For example, deploy the John Travolta application (John_Travolta.go).<br></p>  
   
 
