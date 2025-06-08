@@ -1,8 +1,8 @@
-<h1>Deploying the applications with Rawdat.AI</h1>
+<h1>Composing applications in the skynet with Rawdat.AI</h1>
   <p>First create the application. You can chose any source file from the repositiory. For example, deploy the John Travolta application (John_Travolta.go).<br></p>  
   
 
-  ``curl -ivX POST --data-binary @John_Travolta.go -H 'API-KEY: '"{MY-API-KEY}"'' "https://rawdat.ai/api/v1/deploy-function?uri=/*&language=go&protocol=https&hostname=third.run.place"``
+  ``curl -ivX POST --data-binary @John_Travolta.go -H 'API-KEY: '"{MY-API-KEY}"'' "https://rawdat.ai/api/v1/deploy-function?uri=/*&language=go&protocol=https&hostname=juicebox.publicvm.com"``
 
    
   ``Function is succesfully deployed. Entry point is 11.11.XX.XX.``
